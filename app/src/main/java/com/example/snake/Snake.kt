@@ -61,7 +61,7 @@ class Snake(
     }
     private fun checkGameOver(){
         for(part in snakePart){
-            if(part != snakePart[0] && part.posX == snakePart[0].posX && part.posY == snakePart[0].posY)
+            if(part != snakePart[0] && part.checkPosConflict(snakePart[0].posX, snakePart[0].posY, distanceToSnakePart/2))
                 gameLogic.gameOver()
         }
     }

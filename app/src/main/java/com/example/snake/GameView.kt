@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 
 
@@ -68,6 +69,22 @@ class GameView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         canvas?.drawCircle(gameLogic.food.posX.toFloat() , gameLogic.food.posY.toFloat(), circleRadius.toFloat(), paintFood)
     }
 
+    //KÉPERNYŐRE KATTINTOS DOLOG
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when(event.action){
+            MotionEvent.ACTION_DOWN ->{
+                if(event.y < height/3 && gameLogic.direction != Direction.DOWN )
+                    gameLogic.direction = Direction.UP
+                else if(event.y > 2*height/3 && gameLogic.direction != Direction.UP)
+                    gameLogic.direction = Direction.DOWN
+                else if(event.x < width/2 && gameLogic.direction != Direction.RIGHT)
+                    gameLogic.direction = Direction.LEFT
+                else if(event.x > width/2 && gameLogic.direction != Direction.LEFT)
+                    gameLogic.direction = Direction.RIGHT
+            }
+        }
+        return super.onTouchEvent(event)
+    }
 
 
 }
