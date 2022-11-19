@@ -4,7 +4,6 @@ package com.example.snake
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
@@ -49,6 +48,7 @@ class GameView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         canvas1.drawColor(backcolor)
         gameLogic = GameLogic(width, height, circleRadius, this)
 
+
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -65,9 +65,9 @@ class GameView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         canvas?.drawCircle(gameLogic.snake.snakePart[0].posX.toFloat() , gameLogic.snake.snakePart[0].posY.toFloat(), circleRadius.toFloat(), paintSnakeHead)
     }
     private fun drawFood(canvas: Canvas?){
-        for(f in gameLogic.food)
-            canvas?.drawCircle(f.posX.toFloat() , f.posY.toFloat(), circleRadius.toFloat(), paintFood)
-        //canvas?.drawCircle(gameLogic.food.posX.toFloat() , gameLogic.food.posY.toFloat(), circleRadius.toFloat(), paintFood)
+        canvas?.drawCircle(gameLogic.food.posX.toFloat() , gameLogic.food.posY.toFloat(), circleRadius.toFloat(), paintFood)
     }
+
+
 
 }

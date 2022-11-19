@@ -1,16 +1,15 @@
 package com.example.snake
 
 import java.util.*
-import kotlin.concurrent.schedule
 
 class GameLogic {
     var snake : Snake
-    var food: ArrayList<Food> =  ArrayList()
+    var food: Food
     private var point: Int = 0
     var width: Int
     var height: Int
     private var fieldSize : Int
-    var direction: Direction = Direction.RIGHT
+    var direction: Direction = Direction.UP
     private var gameView : GameView
     private var timer : Timer
 
@@ -20,12 +19,16 @@ class GameLogic {
         this.fieldSize = fieldSize
         this.gameView = gameView
         this.snake = Snake(4, (width/2),(height/2), fieldSize*2, this)
-        this.food.add(Food(width,height,fieldSize))
+        food = Food(width,height,fieldSize)
         timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
-                //move()
-                food.add(Food(width,height,fieldSize))
+                move()
+                    if(food.checkTouchSnakeHead(snake.snakePart[0].posX, snake.snakePart[0].posY)){
+                        point++
+                        snake.addPart()
+                        food = Food(width,height,fieldSize)
+                    }
                 gameView.invalidate()
             }
         }, 1000, 500)
@@ -43,9 +46,5 @@ class GameLogic {
     fun gameOver(){
         timer.cancel()
     }
-
 }
 
-enum class Direction {
-    UP, DOWN, LEFT, RIGHT
-}

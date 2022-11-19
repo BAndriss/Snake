@@ -5,24 +5,23 @@ class Snake(
     length: Int,
     posHeadX: Int,
     posHeadY: Int,
-    distanceToSnakePart: Int = 50,
+    private var distanceToSnakePart: Int = 50,
     private var gameLogic: GameLogic
 ) {
     var snakePart : ArrayList<SnakePart> =  ArrayList()
-    private var length : Int = 4
-    private var distenceToSnakePart : Int = 50
 
     init {
+        snakePart.add(SnakePart(posHeadX,posHeadY))
         var i =0
-        while (i < length){
-            snakePart.add(SnakePart(posHeadX,posHeadY+i*distanceToSnakePart))
+        while (i < length-1){
+            this.addPart()
             i++
         }
     }
 
     fun moveUp(){
         movePart()
-        snakePart[0].posY -= distenceToSnakePart
+        snakePart[0].posY -= distanceToSnakePart
         for(part in snakePart)
             if(part.posY <= 0)
                 part.posY = gameLogic.height
@@ -30,7 +29,7 @@ class Snake(
     }
     fun moveDown(){
         movePart()
-        snakePart[0].posY += distenceToSnakePart
+        snakePart[0].posY += distanceToSnakePart
         for(part in snakePart)
             if(part.posY >= gameLogic.height)
                 part.posY = 0
@@ -38,7 +37,7 @@ class Snake(
     }
     fun moveRight(){
         movePart()
-        snakePart[0].posX += distenceToSnakePart
+        snakePart[0].posX += distanceToSnakePart
         for(part in snakePart)
             if(part.posX >= gameLogic.width)
                 part.posX = 0
@@ -46,7 +45,7 @@ class Snake(
     }
     fun moveLeft(){
         movePart()
-        snakePart[0].posX -= distenceToSnakePart
+        snakePart[0].posX -= distanceToSnakePart
         for(part in snakePart)
             if(part.posX <= 0)
                 part.posX = gameLogic.width
@@ -65,5 +64,8 @@ class Snake(
             if(part != snakePart[0] && part.posX == snakePart[0].posX && part.posY == snakePart[0].posY)
                 gameLogic.gameOver()
         }
+    }
+    fun addPart(){
+        snakePart.add(SnakePart(snakePart.last().posX, snakePart.last().posY+distanceToSnakePart))
     }
 }
