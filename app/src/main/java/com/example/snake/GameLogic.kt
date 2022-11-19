@@ -31,7 +31,7 @@ class GameLogic {
                     }
                 gameView.invalidate()
             }
-        }, 1000, 500)
+        }, 1000, 250)
      }
 
     fun move(){
@@ -45,6 +45,7 @@ class GameLogic {
 
     fun gameOver(){
         timer.cancel()
+        gameView.gameOver(point)
     }
 }
 

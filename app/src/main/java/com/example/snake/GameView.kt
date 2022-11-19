@@ -1,6 +1,7 @@
 package com.example.snake
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -10,8 +11,8 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
-
-class GameView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+@SuppressLint("ViewConstructor")
+class GameView(context: Context, attrs: AttributeSet?, private val mainActivity: MainActivity) : View(context, attrs) {
     private lateinit var canvas1 : Canvas
     private lateinit var bitmap1 : Bitmap
     private val backcolor = ResourcesCompat.getColor(resources, android.R.color.holo_green_dark,null)
@@ -70,6 +71,7 @@ class GameView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     }
 
     //KÉPERNYŐRE KATTINTOS DOLOG
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when(event.action){
             MotionEvent.ACTION_DOWN ->{
@@ -84,6 +86,9 @@ class GameView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
             }
         }
         return super.onTouchEvent(event)
+    }
+    fun gameOver(point: Int){
+        mainActivity.gameOver(point)
     }
 
 
