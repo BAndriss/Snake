@@ -1,5 +1,6 @@
-package com.example.snake
+package com.example.snake.gamelogic
 
+import com.example.snake.view.GameView
 import java.util.*
 
 class GameLogic {

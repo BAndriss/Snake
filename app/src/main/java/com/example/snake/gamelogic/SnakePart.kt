@@ -1,4 +1,4 @@
-package com.example.snake
+package com.example.snake.gamelogic
 
 class SnakePart(var posX: Int, var posY: Int) {
     fun checkPosConflict(x: Int, y: Int, accuracy: Int): Boolean {

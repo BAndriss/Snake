@@ -4,6 +4,7 @@ package com.example.snake
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+import com.example.snake.view.GameView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

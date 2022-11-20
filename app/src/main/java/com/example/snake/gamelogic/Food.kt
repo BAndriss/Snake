@@ -1,4 +1,4 @@
-package com.example.snake
+package com.example.snake.gamelogic
 
 class Food(width: Int, height: Int, private var fieldSize: Int) {
     var  posX: Int =  (1 until width/fieldSize).random()*fieldSize
