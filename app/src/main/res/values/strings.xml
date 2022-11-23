@@ -2,7 +2,7 @@
     <string name="app_name">Snake</string>
     <string name="startGame">Start Game</string>
     <string name="game_over">Game Over</string>
-    <string name="point">Point: </string>
+    <string name="point">"Point: %1$d"</string>
     <string name="your_name">Your name:</string>
     <string name="pleaseFill">Please file this</string>
     <string name="save">Save</string>

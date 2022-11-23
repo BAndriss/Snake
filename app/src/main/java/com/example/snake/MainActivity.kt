@@ -16,7 +16,7 @@ class MainActivity :  AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val point = intent.getIntExtra("POINT", -1)
         val pointText = findViewById<View>(R.id.pointText) as TextView
-        pointText.text = getString(R.string.point) +" "+point.toString()
+        pointText.text = getString(R.string.point,point)
         val saveButton: Button = findViewById(R.id.saveButton)
         val nameText = findViewById<View>(R.id.nameText) as TextView
         saveButton.setOnClickListener {

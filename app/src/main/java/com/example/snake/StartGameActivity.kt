@@ -17,8 +17,8 @@ class StartGameActivity : AppCompatActivity() {
             val gameView = GameView(context, null, context)
             setContentView(gameView)
             //TODO törölni
-            //Thread.sleep(1000)
-            //gameOver(10)
+            Thread.sleep(1000)
+            gameOver(10)
 
         }
     }
