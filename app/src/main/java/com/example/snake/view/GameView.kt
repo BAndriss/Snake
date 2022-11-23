@@ -5,55 +5,51 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
-import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.example.snake.gamelogic.Direction
 import com.example.snake.gamelogic.GameLogic
-import com.example.snake.MainActivity
+import com.example.snake.StartGameActivity
 
 @SuppressLint("ViewConstructor")
-class GameView(context: Context, attrs: AttributeSet?, private val mainActivity: MainActivity) : View(context, attrs) {
+class GameView(context: Context, attrs: AttributeSet?, private val startGameActivity: StartGameActivity) : View(context, attrs) {
     private lateinit var canvas1 : Canvas
     private lateinit var bitmap1 : Bitmap
-    private val backcolor = ResourcesCompat.getColor(resources, android.R.color.holo_green_dark,null)
     private val circleRadius = 30
     private lateinit var gameLogic : GameLogic
     private val paintSnakePart: Paint = Paint().apply{
 
-        color = ResourcesCompat.getColor(resources, android.R.color.holo_orange_light,null)
+        color = Color.YELLOW
         style = Paint.Style.FILL
         isAntiAlias = true
 
     }
     private val paintSnakeHead: Paint = Paint().apply{
 
-        color = ResourcesCompat.getColor(resources, android.R.color.holo_red_dark,null)
+        color = Color.RED
         style = Paint.Style.FILL
         isAntiAlias = true
 
     }
     private val paintFood: Paint = Paint().apply{
 
-        color = ResourcesCompat.getColor(resources, android.R.color.holo_purple,null)
+        color = Color.CYAN
         style = Paint.Style.FILL
         isAntiAlias = true
 
     }
-
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-
+        this.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
         if(::bitmap1.isInitialized)
             bitmap1.recycle()
         bitmap1 = Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888)
         canvas1 = Canvas(bitmap1)
-        canvas1.drawColor(backcolor)
+        canvas1.drawColor(Color.GREEN)
         gameLogic = GameLogic(width, height, circleRadius, this)
-
-
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -91,7 +87,7 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
         return super.onTouchEvent(event)
     }
     fun gameOver(point: Int){
-        mainActivity.gameOver(point)
+        startGameActivity.gameOver(point)
     }
 
 
