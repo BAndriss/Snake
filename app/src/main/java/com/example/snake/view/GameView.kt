@@ -43,7 +43,6 @@ class GameView(context: Context, attrs: AttributeSet?, private val startGameActi
     }
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        this.systemUiVisibility = SYSTEM_UI_FLAG_FULLSCREEN
         if(::bitmap1.isInitialized)
             bitmap1.recycle()
         bitmap1 = Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888)
