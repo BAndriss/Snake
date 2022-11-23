@@ -1,6 +1,7 @@
 package com.example.snake
 
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -33,6 +34,7 @@ class MainActivity :  AppCompatActivity() {
         } else{
             //TODO
             println("AAAAAAAAAAAAAAA")
+            startActivity(Intent(this, StartGameActivity::class.java))
         }
     }
 }

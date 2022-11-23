@@ -10,6 +10,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.view.MotionEventCompat.getPointerCount
 import com.example.snake.gamelogic.Direction
 import com.example.snake.gamelogic.GameLogic
 import com.example.snake.StartGameActivity
@@ -68,19 +69,40 @@ class GameView(context: Context, attrs: AttributeSet?, private val startGameActi
         canvas?.drawCircle(gameLogic.food.posX.toFloat() , gameLogic.food.posY.toFloat(), circleRadius.toFloat(), paintFood)
     }
 
+    private var posX : Float = 0F
+    private var posY : Float = 0F
     //KÉPERNYŐRE KATTINTOS DOLOG
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when(event.action){
             MotionEvent.ACTION_DOWN ->{
-                if(event.y < height/3 && gameLogic.direction != Direction.DOWN)
+                /*if(event.y < height/3 && gameLogic.direction != Direction.DOWN)
                     gameLogic.direction = Direction.UP
                 else if(event.y > 2*height/3 && gameLogic.direction != Direction.UP)
                     gameLogic.direction = Direction.DOWN
                 else if(event.x < width/2 && gameLogic.direction != Direction.RIGHT)
                     gameLogic.direction = Direction.LEFT
                 else if(event.x > width/2 && gameLogic.direction != Direction.LEFT)
-                    gameLogic.direction = Direction.RIGHT
+                    gameLogic.direction = Direction.RIGHT*/
+                posX  = event.x // A csúsztatos mozgatás
+                posY = event.y
+                return true
+            }
+            MotionEvent.ACTION_UP ->{
+                val xDif = posX-event.x
+                val yDif = posY-event.y
+                if(kotlin.math.abs(xDif) > kotlin.math.abs(yDif)){
+                    if(xDif<0.0F && gameLogic.direction != Direction.LEFT)
+                        gameLogic.direction = Direction.RIGHT
+                    else if(xDif>0.0F && gameLogic.direction != Direction.RIGHT)
+                        gameLogic.direction = Direction.LEFT
+                } else{
+                    if(yDif>0.0F && gameLogic.direction != Direction.DOWN)
+                        gameLogic.direction = Direction.UP
+                    else if(yDif<0.0F && gameLogic.direction != Direction.UP)
+                        gameLogic.direction = Direction.DOWN
+                }
+                return false
             }
         }
         return super.onTouchEvent(event)

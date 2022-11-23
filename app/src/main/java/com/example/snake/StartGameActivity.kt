@@ -2,8 +2,10 @@ package com.example.snake
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.snake.gamelogic.Direction
 import com.example.snake.view.GameView
 
 
@@ -17,13 +19,12 @@ class StartGameActivity : AppCompatActivity() {
             val gameView = GameView(context, null, context)
             setContentView(gameView)
             //TODO törölni
-            Thread.sleep(1000)
-            gameOver(10)
+            //Thread.sleep(1000)
+            //gameOver(10)
 
         }
     }
     fun gameOver(point: Int){
-        println("AAAA"+ point)
         val intel  = Intent(this, MainActivity::class.java)
         intel.putExtra("POINT", point)
         startActivity(intel)
