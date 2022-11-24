@@ -10,10 +10,9 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import androidx.core.view.MotionEventCompat.getPointerCount
+import com.example.snake.StartGameActivity
 import com.example.snake.gamelogic.Direction
 import com.example.snake.gamelogic.GameLogic
-import com.example.snake.StartGameActivity
 
 @SuppressLint("ViewConstructor")
 class GameView(context: Context, attrs: AttributeSet?, private val startGameActivity: StartGameActivity) : View(context, attrs) {

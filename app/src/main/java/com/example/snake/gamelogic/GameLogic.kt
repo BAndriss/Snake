@@ -19,11 +19,13 @@ class GameLogic {
         this.height = height
         this.fieldSize = fieldSize
         this.gameView = gameView
-        this.snake = Snake(4, (width/2),(height/2), fieldSize*2, this)
+        //TODO snake length 4-re átírni
+        this.snake = Snake(20, (width/2),(height/2), fieldSize*2, this)
         food = Food(width,height,fieldSize)
         timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
+                //TODO ha az alkalmazás hátérbe van rakva idéglenes futt tovább
                 move()
                     if(food.checkTouchSnakeHead(snake.snakePart[0].posX, snake.snakePart[0].posY)){
                         point++
@@ -32,7 +34,7 @@ class GameLogic {
                     }
                 gameView.invalidate()
             }
-        }, 1000, 250)
+        }, 1000, 100)
      }
 
     fun move(){
