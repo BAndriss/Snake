@@ -10,12 +10,12 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.example.snake.StartGameActivity
+import com.example.snake.MainActivity
 import com.example.snake.gamelogic.Direction
 import com.example.snake.gamelogic.GameLogic
 
 @SuppressLint("ViewConstructor")
-class GameView(context: Context, attrs: AttributeSet?, private val startGameActivity: StartGameActivity) : View(context, attrs) {
+class GameView(context: Context, attrs: AttributeSet?, private val mainActivity: MainActivity) : View(context, attrs) {
     private lateinit var canvas1 : Canvas
     private lateinit var bitmap1 : Bitmap
     private val circleRadius = 30
@@ -107,7 +107,7 @@ class GameView(context: Context, attrs: AttributeSet?, private val startGameActi
         return super.onTouchEvent(event)
     }
     fun gameOver(point: Int){
-        startGameActivity.gameOver(point)
+        mainActivity.gameOver(point)
     }
 
 

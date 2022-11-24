@@ -1,44 +1,33 @@
 package com.example.snake
 
-
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.snake.view.GameView
 
 
-class MainActivity :  AppCompatActivity() {
-
+class MainActivity : AppCompatActivity() {
+    lateinit var gameView : GameView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val point = intent.getIntExtra("POINT", -1)
-        val pointText = findViewById<View>(R.id.pointText) as TextView
-        pointText.text = getString(R.string.point,point)
-        val saveButton: Button = findViewById(R.id.saveButton)
-        val nameText = findViewById<View>(R.id.nameText) as TextView
-        saveButton.setOnClickListener {
-            println(nameText.text.length)
-            save(nameText, point)
-        }
-        nameText.setOnClickListener {
-            save(nameText, point)
+        val button: Button = findViewById(R.id.startGameButton)
+        val context = this
+        button.setOnClickListener {
+            gameView = GameView(context, null, context)
+            setContentView(gameView)
+            //TODO törölni
+            //Thread.sleep(1000)
+            //gameOver(10)
+
         }
     }
-    private fun save(nameText: TextView, point: Int){
-        if(nameText.text.isEmpty() ) {
-            nameText.setHintTextColor(Color.RED)
-        } else{
-            //TODO
-            startActivity(Intent(this, StartGameActivity::class.java))
-        }
+    fun gameOver(point: Int){
+        val intel  = Intent(this, SaveActivity::class.java)
+        intel.putExtra("POINT", point)
+        startActivity(intel)
     }
     override fun onBackPressed() {
-        startActivity(Intent(this, StartGameActivity::class.java))
     }
-
 }
