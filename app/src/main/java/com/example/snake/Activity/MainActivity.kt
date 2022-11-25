@@ -1,9 +1,10 @@
-package com.example.snake
+package com.example.snake.Activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.snake.R
 import com.example.snake.view.GameView
 
 

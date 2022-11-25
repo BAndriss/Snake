@@ -1,10 +1,11 @@
-package com.example.snake
+package com.example.snake.Activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.example.snake.R
 import com.example.snake.scoredatamodel.SaveScoreData
 import com.example.snake.scoredatamodel.ScoreModelData
 

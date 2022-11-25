@@ -48,7 +48,6 @@ class SaveScoreData {
             allScores.toList().map{it.toJsonObject()}
                 .forEach{jsonArray.put(it)}
             val file = File(context.filesDir, file_name).writeText(jsonArray.toString())
-            println(file.toString())
         }
     }
 }
