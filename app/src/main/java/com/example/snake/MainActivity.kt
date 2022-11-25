@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         leaderboardButton.setOnClickListener {
             startActivity(Intent(this, LeaderboardActivity::class.java))
         }
+        val settingsButton : Button = findViewById(R.id.settingButton)
+        settingsButton.setOnClickListener{
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
 
     }
     fun gameOver(point: Int){

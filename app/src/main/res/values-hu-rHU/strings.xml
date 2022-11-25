@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Snake</string>
+    <string name="startGame">Játék indítása</string>
+    <string name="game_over">Vége a játéknak</string>
+    <string name="point">Pont: %1$d</string>
+    <string name="your_name">Név:</string>
+    <string name="pleaseFill">Légyszíves töltsd ki</string>
+    <string name="save">Mentés</string>
+    <string name="leaderboard">Ranglista</string>
+    <string name="back">Vissza</string>
+    <string name="name">Név</string>
+    <string name="score">Pont</string>
+    <string name="settings">Beállítások</string>
+</resources>
