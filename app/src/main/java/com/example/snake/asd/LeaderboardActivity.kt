@@ -1,4 +1,4 @@
-package com.example.snake.Activity
+package com.example.snake.asd
 
 import android.content.Intent
 import android.os.Bundle
@@ -23,12 +23,12 @@ class LeaderboardActivity : AppCompatActivity() {
             map["Score"] = score.point.toString()
             list.add(map)
         }
-        list.sortBy { it["Score"] }
-        list.reverse()
+        list.sortWith(  compareBy({it["Score"]?.toInt()},{it["Name"]}) )
+        //list.reversed()
         val listView: ListView = findViewById(R.id.listView)
         listView.adapter = SimpleAdapter(
             this,
-            list,
+            list.reversed(),
             R.layout.row_layout,
             arrayOf("Name", "Score"),
             intArrayOf(R.id.nameRowLayout, R.id.scoreRowLayout)

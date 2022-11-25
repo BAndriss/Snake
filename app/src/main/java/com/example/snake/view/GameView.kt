@@ -3,18 +3,24 @@ package com.example.snake.view
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Context.SENSOR_SERVICE
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
+import com.example.snake.asd.MainActivity
 import com.example.snake.gamelogic.Control
-import com.example.snake.Activity.MainActivity
 import com.example.snake.gamelogic.Direction
-import com.example.snake.gamelogic.SettingSaveFile
 import com.example.snake.gamelogic.GameLogic
+import com.example.snake.gamelogic.SettingSaveFile
 
 @SuppressLint("ViewConstructor")
 class GameView(context: Context, attrs: AttributeSet?, private val mainActivity: MainActivity) :
@@ -46,6 +52,8 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
 
     }
 
+    private val sensorManager = context.getSystemService(SENSOR_SERVICE) as SensorManager
+    private val acceleSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         if (::bitmap1.isInitialized)
@@ -54,6 +62,9 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
         canvas1 = Canvas(bitmap1)
         canvas1.drawColor(Color.GREEN)
         gameLogic = GameLogic(width, height, circleRadius, this)
+        if (Control.ACCELEROMETER == control) {
+            useAccelerometer()
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -133,6 +144,31 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
 
     fun gameOver(point: Int) {
         mainActivity.gameOver(point)
+        sensorManager.unregisterListener(accelerometerSensorListener)
+    }
+
+    private var accelerometerSensorListener = object : SensorEventListener {
+        override fun onSensorChanged(sensorEvent: SensorEvent) {
+            if (sensorEvent.sensor.type == Sensor.TYPE_ACCELEROMETER) {
+                if (sensorEvent.values[0] > 2f && gameLogic.direction != Direction.RIGHT) {
+                    gameLogic.direction = Direction.LEFT
+                } else if (sensorEvent.values[0] < -2f && gameLogic.direction != Direction.LEFT) {
+                    gameLogic.direction = Direction.RIGHT
+                } else if (sensorEvent.values[2] < 2f && gameLogic.direction != Direction.UP) {
+                    gameLogic.direction = Direction.DOWN
+                } else if (sensorEvent.values[2] > 2f && gameLogic.direction != Direction.DOWN) {
+                    gameLogic.direction = Direction.UP
+                }
+            }
+        }
+        override fun onAccuracyChanged(sensor: Sensor, i: Int) {}
+    }
+
+    private fun useAccelerometer() {
+        if (acceleSensor == null) {
+            Toast.makeText(context, "This device has no Accelerometer!", Toast.LENGTH_SHORT).show()
+        }
+        sensorManager.registerListener(accelerometerSensorListener, acceleSensor, SensorManager.SENSOR_DELAY_UI)
     }
 
 

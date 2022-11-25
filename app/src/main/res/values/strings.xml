@@ -11,8 +11,10 @@
     <string name="name">Name</string>
     <string name="score">Score</string>
     <string name="settings">Settings</string>
+    <string name="control">Control:</string>
     <string-array name="controls">
         <item>On sliding</item>
         <item>On click</item>
+        <item>Accelerometer</item>
     </string-array>
 </resources>

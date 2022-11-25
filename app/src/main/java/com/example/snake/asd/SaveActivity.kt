@@ -1,4 +1,4 @@
-package com.example.snake.Activity
+package com.example.snake.asd
 
 
 import android.content.Intent

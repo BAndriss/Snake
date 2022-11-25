@@ -12,8 +12,10 @@
     <string name="name">Név</string>
     <string name="score">Pont</string>
     <string name="settings">Beállítások</string>
+    <string name="control">Írányítás:</string>
     <string-array name="controls">
         <item>Csúsztatás</item>
         <item>Kattintás</item>
+        <item>Gyorsulásmérő</item>
     </string-array>
 </resources>
