@@ -6,4 +6,6 @@
     <string name="your_name">Your name:</string>
     <string name="pleaseFill">Please file this</string>
     <string name="save">Save</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="back">Back</string>
 </resources>

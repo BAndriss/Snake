@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val button: Button = findViewById(R.id.startGameButton)
+        val startButton: Button = findViewById(R.id.startGameButton)
         val context = this
-        button.setOnClickListener {
+        startButton.setOnClickListener {
             gameView = GameView(context, null, context)
             setContentView(gameView)
             //TODO törölni
@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
             //gameOver(10)
 
         }
+        val leaderboardButton: Button = findViewById(R.id.leaderboardButton)
+        leaderboardButton.setOnClickListener {
+            startActivity(Intent(this, LeaderboardActivity::class.java))
+        }
+
     }
     fun gameOver(point: Int){
         val intel  = Intent(this, SaveActivity::class.java)
