@@ -12,25 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Snake"
         android:localeConfig="@xml/locales_config"
+        android:screenOrientation="portrait"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.SettingsActivity"
+            android:name=".asd.SettingsActivity"
             android:exported="false"
-            android:parentActivityName=".Activity.MainActivity">
+            android:parentActivityName=".asd.MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.LeaderboardActivity"
+            android:name=".asd.LeaderboardActivity"
             android:exported="false"
-            android:parentActivityName=".Activity.MainActivity">
+            android:parentActivityName=".asd.MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".asd.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,9 +44,9 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.SaveActivity"
+            android:name=".asd.SaveActivity"
             android:exported="true"
-            android:parentActivityName=".Activity.MainActivity">
+            android:parentActivityName=".asd.MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

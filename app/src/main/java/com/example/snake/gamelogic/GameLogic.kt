@@ -20,7 +20,7 @@ class GameLogic {
         this.fieldSize = fieldSize
         this.gameView = gameView
         //TODO snake length 4-re átírni
-        this.snake = Snake(20, (width/2),(height/2), fieldSize*2, this)
+        this.snake = Snake(4, (width/2),(height/2), fieldSize*2, this)
         food = Food(width,height,fieldSize)
         timer = Timer()
         timer.schedule(object : TimerTask() {

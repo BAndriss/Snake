@@ -1,4 +1,4 @@
-package com.example.snake.Activity
+package com.example.snake.asd
 
 import android.os.Bundle
 import android.view.View
@@ -23,24 +23,23 @@ class SettingsActivity : AppCompatActivity() {
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>, p1: View?, p2: Int, p3: Long) {
                     println("Selected locale =" + p0.getItemAtPosition(p2)+" "+p2)
-                    if(p2==0)
-                        control = Control.SLIDING
-                    else if(p2==1)
-                        control = Control.CLICK
+                    when (p2) {
+                        0 -> control = Control.SLIDING
+                        1 -> control = Control.CLICK
+                        2 -> control = Control.ACCELEROMETER
+                    }
                     SettingSaveFile.saveControl(context, control)
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
             }
-
-
     }
     private fun getPos(control: Control): Int{
-        if(control == Control.SLIDING)
-            return 0
-        if(control == Control.CLICK)
-            return 1
-        return 0
+        return when (control) {
+            Control.SLIDING -> 0
+            Control.CLICK -> 1
+            Control.ACCELEROMETER -> 2
+        }
     }
 
 }

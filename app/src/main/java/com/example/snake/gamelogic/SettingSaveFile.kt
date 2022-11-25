@@ -14,11 +14,12 @@ class SettingSaveFile {
                 return Control.SLIDING
             val ct = file.readText(StandardCharsets.UTF_8)
             ct.ifBlank { return Control.SLIDING }
-            if (ct == Control.SLIDING.toString())
-                return Control.SLIDING
-            else if (ct == Control.CLICK.toString())
-                return Control.CLICK
-            return Control.SLIDING
+            return when (ct) {
+                Control.SLIDING.toString() -> Control.SLIDING
+                Control.CLICK.toString() -> Control.CLICK
+                Control.ACCELEROMETER.toString() -> Control.ACCELEROMETER
+                else -> Control.SLIDING
+            }
         }
 
         fun saveControl(context: Context, control: Control) {
