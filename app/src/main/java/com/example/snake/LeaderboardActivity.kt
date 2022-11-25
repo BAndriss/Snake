@@ -13,13 +13,11 @@ class LeaderboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
-        /*val backButton: Button = findViewById(R.id.Backbutton)
-        backButton.setOnClickListener {   setContentView(R.layout.activity_main) }*/
-        val allScore : ArrayList<ScoreModelData>  = SaveScoreData.loadAllScore(this)
+        val allScore: ArrayList<ScoreModelData> = SaveScoreData.loadAllScore(this)
         val list = ArrayList<HashMap<String, String>>()
-        for (score in allScore){
+        for (score in allScore) {
             val map = HashMap<String, String>()
-            println(score.name+" "+score.point)
+            println(score.name + " " + score.point)
             map["Name"] = score.name.toString()
             map["Score"] = score.point.toString()
             list.add(map)
@@ -35,6 +33,7 @@ class LeaderboardActivity : AppCompatActivity() {
             intArrayOf(R.id.nameRowLayout, R.id.scoreRowLayout)
         )
     }
+
     override fun onBackPressed() {
         startActivity(Intent(this, MainActivity::class.java))
     }
