@@ -1,21 +1,41 @@
 package com.example.snake
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ListView
+import android.widget.SimpleAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.example.snake.scoredatamodel.SaveScoreData
 import com.example.snake.scoredatamodel.ScoreModelData
+
 
 class LeaderboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
-        val backButton: Button = findViewById(R.id.Backbutton)
-        backButton.setOnClickListener {   setContentView(R.layout.activity_main) }
+        /*val backButton: Button = findViewById(R.id.Backbutton)
+        backButton.setOnClickListener {   setContentView(R.layout.activity_main) }*/
         val allScore : ArrayList<ScoreModelData>  = SaveScoreData.loadAllScore(this)
+        val list = ArrayList<HashMap<String, String>>()
         for (score in allScore){
+            val map = HashMap<String, String>()
             println(score.name+" "+score.point)
+            map["Name"] = score.name.toString()
+            map["Score"] = score.point.toString()
+            list.add(map)
         }
-        //allScore.stream().sorted(ScoreModelData..reverseOrder()))
+        list.sortBy { it["Score"] }
+        list.reverse()
+        val listView: ListView = findViewById(R.id.listView)
+        listView.adapter = SimpleAdapter(
+            this,
+            list,
+            R.layout.row_layout,
+            arrayOf("Name", "Score"),
+            intArrayOf(R.id.nameRowLayout, R.id.scoreRowLayout)
+        )
+    }
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

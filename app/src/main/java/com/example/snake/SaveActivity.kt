@@ -39,9 +39,14 @@ class SaveActivity :  AppCompatActivity() {
                 this,
                 ScoreModelData(UUID.randomUUID(), nameText.text.toString(), point)
             )
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LeaderboardActivity::class.java))
         }
     }
+    @Deprecated("Deprecated in Java", ReplaceWith(
+        "startActivity(Intent(this, MainActivity::class.java))",
+        "android.content.Intent"
+    )
+    )
     override fun onBackPressed() {
         startActivity(Intent(this, MainActivity::class.java))
     }
