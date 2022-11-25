@@ -8,4 +8,6 @@
     <string name="save">Save</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="back">Back</string>
+    <string name="name">Name</string>
+    <string name="score">Score</string>
 </resources>
