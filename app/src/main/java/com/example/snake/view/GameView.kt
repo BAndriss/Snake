@@ -53,7 +53,7 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
     }
 
     private val sensorManager = context.getSystemService(SENSOR_SERVICE) as SensorManager
-    private val acceleSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+    private val accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         if (::bitmap1.isInitialized)
@@ -165,10 +165,10 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
     }
 
     private fun useAccelerometer() {
-        if (acceleSensor == null) {
+        if (accelerometerSensor == null) {
             Toast.makeText(context, "This device has no Accelerometer!", Toast.LENGTH_SHORT).show()
         }
-        sensorManager.registerListener(accelerometerSensorListener, acceleSensor, SensorManager.SENSOR_DELAY_UI)
+        sensorManager.registerListener(accelerometerSensorListener, accelerometerSensor, SensorManager.SENSOR_DELAY_UI)
     }
 
 

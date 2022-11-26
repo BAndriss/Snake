@@ -9,7 +9,7 @@ import com.example.snake.view.GameView
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var gameView : GameView
+    private lateinit var gameView : GameView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,10 +18,6 @@ class MainActivity : AppCompatActivity() {
         startButton.setOnClickListener {
             gameView = GameView(context, null, context)
             setContentView(gameView)
-            //TODO törölni
-            //Thread.sleep(1000)
-            //gameOver(10)
-
         }
         val leaderboardButton: Button = findViewById(R.id.leaderboardButton)
         leaderboardButton.setOnClickListener {

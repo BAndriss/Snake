@@ -19,15 +19,15 @@ class SaveScoreData {
             }
             return result
         }
-        private fun loadFile(context: Context, fileName: String, create: Boolean = false): File {
+        private fun loadFile(context: Context, fileName: String): File {
             val file = File(context.filesDir, fileName)
-            if(!file.exists() && create) {
+            if(!file.exists()) {
                 file.createNewFile()
             }
             return file
         }
         fun loadAllScore(context: Context): ArrayList<ScoreModelData> {
-           val scoreFile = loadFile(context, file_name, true)
+           val scoreFile = loadFile(context, file_name)
             var scoreFileContent = scoreFile.readText(StandardCharsets.UTF_8)
             scoreFileContent = scoreFileContent.ifBlank { "[ ]" }
 
@@ -36,8 +36,6 @@ class SaveScoreData {
         }
 
         fun saveLocationModel(context: Context, scoreModelData: ScoreModelData) {
-            // save all locations in a file, called "locations.json"
-            // use the FileStorage.writeText()-method
             val allScores = loadAllScore(context)
             allScores
                 .filter { it.id?.equals(scoreModelData.id) ?:false }
@@ -47,7 +45,7 @@ class SaveScoreData {
             val jsonArray = JSONArray()
             allScores.toList().map{it.toJsonObject()}
                 .forEach{jsonArray.put(it)}
-            val file = File(context.filesDir, file_name).writeText(jsonArray.toString())
+            File(context.filesDir, file_name).writeText(jsonArray.toString())
         }
     }
 }
