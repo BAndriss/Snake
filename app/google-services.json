@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "15514749415",
+    "project_id": "snake-f02dd",
+    "storage_bucket": "snake-f02dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15514749415:android:39a27497eb264d8aa4d542",
+        "android_client_info": {
+          "package_name": "com.example.snake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15514749415-0jhj3kv0sevnfqglsk82ts4a5f524jv0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oVgoWzhu1FuZuQm-CdBdYRcRklaigdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15514749415-0jhj3kv0sevnfqglsk82ts4a5f524jv0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
