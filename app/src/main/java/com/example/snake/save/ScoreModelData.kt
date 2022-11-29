@@ -1,9 +1,9 @@
-package com.example.snake.scoredatamodel
+package com.example.snake.save
 
 import org.json.JSONObject
 import java.util.*
 
-data class ScoreModelData (
+data class ScoreModelData(
     var id: UUID? = UUID.randomUUID(),
     var name: String? = null,
     var point: Int? = null

@@ -1,4 +1,4 @@
-package com.example.snake.asd
+package com.example.snake.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import com.example.snake.view.GameView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var gameView : GameView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,11 +30,14 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     fun gameOver(point: Int){
         val intel  = Intent(this, SaveActivity::class.java)
         intel.putExtra("POINT", point)
         startActivity(intel)
     }
+
+    @Deprecated("Disable back button")
     override fun onBackPressed() {
     }
 }

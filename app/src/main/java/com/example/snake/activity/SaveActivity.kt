@@ -1,4 +1,4 @@
-package com.example.snake.asd
+package com.example.snake.activity
 
 
 import android.content.Intent
@@ -9,8 +9,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.snake.R
-import com.example.snake.scoredatamodel.SaveScoreData
-import com.example.snake.scoredatamodel.ScoreModelData
+import com.example.snake.save.SaveScoreData
+import com.example.snake.save.ScoreModelData
 import java.util.*
 
 
@@ -32,6 +32,7 @@ class SaveActivity :  AppCompatActivity() {
             save(nameText, point)
         }
     }
+
     private fun save(nameText: TextView, point: Int){
         if(nameText.text.isEmpty() ) {
             nameText.setHintTextColor(Color.RED)
@@ -43,7 +44,8 @@ class SaveActivity :  AppCompatActivity() {
             startActivity(Intent(this, LeaderboardActivity::class.java))
         }
     }
-    @Deprecated("Deprecated in Java", ReplaceWith(
+
+    @Deprecated("Disable back button", ReplaceWith(
         "startActivity(Intent(this, MainActivity::class.java))",
         "android.content.Intent"
     )

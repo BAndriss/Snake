@@ -1,4 +1,4 @@
-package com.example.snake.asd
+package com.example.snake.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,12 @@ import android.widget.ListView
 import android.widget.SimpleAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.snake.R
-import com.example.snake.scoredatamodel.SaveScoreData
-import com.example.snake.scoredatamodel.ScoreModelData
+import com.example.snake.save.SaveScoreData
+import com.example.snake.save.ScoreModelData
 
 
 class LeaderboardActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
@@ -24,7 +25,6 @@ class LeaderboardActivity : AppCompatActivity() {
             list.add(map)
         }
         list.sortWith(  compareBy({it["Score"]?.toInt()},{it["Name"]}) )
-        //list.reversed()
         val listView: ListView = findViewById(R.id.listView)
         listView.adapter = SimpleAdapter(
             this,
@@ -35,6 +35,11 @@ class LeaderboardActivity : AppCompatActivity() {
         )
     }
 
+    @Deprecated("Disable back button", ReplaceWith(
+        "startActivity(Intent(this, MainActivity::class.java))",
+        "android.content.Intent"
+    )
+    )
     override fun onBackPressed() {
         startActivity(Intent(this, MainActivity::class.java))
     }

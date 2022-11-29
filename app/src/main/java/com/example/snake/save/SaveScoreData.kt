@@ -1,4 +1,4 @@
-package com.example.snake.scoredatamodel
+package com.example.snake.save
 
 import android.content.Context
 import org.json.JSONArray
@@ -19,15 +19,17 @@ class SaveScoreData {
             }
             return result
         }
+
         private fun loadFile(context: Context, fileName: String): File {
             val file = File(context.filesDir, fileName)
-            if(!file.exists()) {
+            if (!file.exists()) {
                 file.createNewFile()
             }
             return file
         }
+
         fun loadAllScore(context: Context): ArrayList<ScoreModelData> {
-           val scoreFile = loadFile(context, file_name)
+            val scoreFile = loadFile(context, file_name)
             var scoreFileContent = scoreFile.readText(StandardCharsets.UTF_8)
             scoreFileContent = scoreFileContent.ifBlank { "[ ]" }
 
@@ -38,13 +40,13 @@ class SaveScoreData {
         fun saveLocationModel(context: Context, scoreModelData: ScoreModelData) {
             val allScores = loadAllScore(context)
             allScores
-                .filter { it.id?.equals(scoreModelData.id) ?:false }
+                .filter { it.id?.equals(scoreModelData.id) ?: false }
                 .forEach { allScores.remove(it) }
 
             allScores.add(scoreModelData)
             val jsonArray = JSONArray()
-            allScores.toList().map{it.toJsonObject()}
-                .forEach{jsonArray.put(it)}
+            allScores.toList().map { it.toJsonObject() }
+                .forEach { jsonArray.put(it) }
             File(context.filesDir, file_name).writeText(jsonArray.toString())
         }
     }

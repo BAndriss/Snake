@@ -1,6 +1,7 @@
-package com.example.snake.gamelogic
+package com.example.snake.save
 
 import android.content.Context
+import com.example.snake.gamelogic.Control
 import java.io.File
 import java.nio.charset.StandardCharsets
 
