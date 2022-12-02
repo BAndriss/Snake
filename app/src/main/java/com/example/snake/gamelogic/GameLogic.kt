@@ -3,29 +3,26 @@ package com.example.snake.gamelogic
 import com.example.snake.view.GameView
 import java.util.*
 
-class GameLogic {
+class GameLogic(
+    var width: Int,
+    var height: Int,
+    private var fieldSize: Int,
+    private var gameView: GameView
+) {
     var snake: Snake
     var food: Food
-    var width: Int
-    var height: Int
     var direction: Direction = Direction.UP
     private var point: Int = 0
-    private var fieldSize: Int
-    private var gameView: GameView
     private var timer: Timer
+    private val startSnakeLength = 4
+    private val gameSpeed = 100.toLong()
 
-    constructor(width: Int, height: Int, fieldSize: Int, gameView: GameView) {
-        this.width = width
-        this.height = height
-        this.fieldSize = fieldSize
-        this.gameView = gameView
-        //TODO snake length 4-re átírni
-        this.snake = Snake(4, (width / 2), (height / 2), fieldSize * 2, this)
+    init {
+        this.snake = Snake(startSnakeLength, (width / 2), (height / 2), fieldSize * 2, this)
         food = Food(width, height, fieldSize)
         timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
-                //TODO ha az alkalmazás hátérbe van rakva idéglenes futt tovább
                 move()
                 if (food.checkTouchSnakeHead(snake.snakePart[0].posX, snake.snakePart[0].posY)) {
                     point++
@@ -34,7 +31,7 @@ class GameLogic {
                 }
                 gameView.invalidate()
             }
-        }, 1000, 100)
+        }, 1000, gameSpeed)
     }
 
     fun move() {

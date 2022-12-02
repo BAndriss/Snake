@@ -48,6 +48,7 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
 
     private val sensorManager = context.getSystemService(SENSOR_SERVICE) as SensorManager
     private val accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         if (::bitmap1.isInitialized)
@@ -102,13 +103,13 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 if (control == Control.CLICK) {
-                    if (event.y < height / 3 && gameLogic.direction != Direction.DOWN) gameLogic.direction =
+                    if ((event.y < height / 3) && gameLogic.direction != Direction.DOWN) gameLogic.direction =
                         Direction.UP
-                    else if (event.y > 2 * height / 3 && gameLogic.direction != Direction.UP) gameLogic.direction =
+                    else if ((event.y > 2 * height / 3) && gameLogic.direction != Direction.UP) gameLogic.direction =
                         Direction.DOWN
-                    else if (event.x < width / 2 && gameLogic.direction != Direction.RIGHT) gameLogic.direction =
+                    else if ((event.x < width / 2) && gameLogic.direction != Direction.RIGHT) gameLogic.direction =
                         Direction.LEFT
-                    else if (event.x > width / 2 && gameLogic.direction != Direction.LEFT) gameLogic.direction =
+                    else if ((event.x > width / 2) && gameLogic.direction != Direction.LEFT) gameLogic.direction =
                         Direction.RIGHT
                 } else if (control == Control.SLIDING) {
                     posX = event.x
