@@ -163,12 +163,13 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
 
     private fun useAccelerometer() {
         if (accelerometerSensor == null) {
+            sensorManager.unregisterListener(accelerometerSensorListener)
             Toast.makeText(context, "This device has no Accelerometer!", Toast.LENGTH_SHORT).show()
             mainActivity.startActivity(Intent(mainActivity, MainActivity::class.java))
-        }
-        sensorManager.registerListener(
-            accelerometerSensorListener, accelerometerSensor, SensorManager.SENSOR_DELAY_UI
-        )
+        } else
+            sensorManager.registerListener(
+                accelerometerSensorListener, accelerometerSensor, SensorManager.SENSOR_DELAY_UI
+            )
     }
 
 
