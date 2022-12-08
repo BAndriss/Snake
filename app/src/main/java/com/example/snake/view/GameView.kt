@@ -4,6 +4,7 @@ package com.example.snake.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.SENSOR_SERVICE
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -103,13 +104,13 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 if (control == Control.CLICK) {
-                    if ((event.y < height / 3) && gameLogic.direction != Direction.DOWN) gameLogic.direction =
+                    if (event.y < height / 3 && gameLogic.direction != Direction.DOWN) gameLogic.direction =
                         Direction.UP
-                    else if ((event.y > 2 * height / 3) && gameLogic.direction != Direction.UP) gameLogic.direction =
+                    else if (event.y > 2 * height / 3 && gameLogic.direction != Direction.UP) gameLogic.direction =
                         Direction.DOWN
-                    else if ((event.x < width / 2) && gameLogic.direction != Direction.RIGHT) gameLogic.direction =
+                    else if (event.x < width / 2 && gameLogic.direction != Direction.RIGHT) gameLogic.direction =
                         Direction.LEFT
-                    else if ((event.x > width / 2) && gameLogic.direction != Direction.LEFT) gameLogic.direction =
+                    else if (event.x > width / 2 && gameLogic.direction != Direction.LEFT) gameLogic.direction =
                         Direction.RIGHT
                 } else if (control == Control.SLIDING) {
                     posX = event.x
@@ -163,6 +164,7 @@ class GameView(context: Context, attrs: AttributeSet?, private val mainActivity:
     private fun useAccelerometer() {
         if (accelerometerSensor == null) {
             Toast.makeText(context, "This device has no Accelerometer!", Toast.LENGTH_SHORT).show()
+            mainActivity.startActivity(Intent(mainActivity, MainActivity::class.java))
         }
         sensorManager.registerListener(
             accelerometerSensorListener, accelerometerSensor, SensorManager.SENSOR_DELAY_UI
