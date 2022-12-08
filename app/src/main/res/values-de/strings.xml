@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Snake</string>
+    <string name="startGame">Spielen</string>
+    <string name="game_over">"Spiel ist aus "</string>
+    <string name="point">Punkt: %1$d</string>
+    <string name="your_name">Namen:</string>
+    <string name="settings">Einstellungen</string>
+    <string name="score">Punkt</string>
+    <string name="name">Name</string>
+    <string name="back">Zurück</string>
+    <string name="leaderboard">Rangliste</string>
+    <string name="pleaseFill">"Bitte füllen Sie es aus "</string>
+    <string name="save">Speichern</string>
+    <string name="control">Kontrolle</string>
+    <string-array name="controls">
+        <item>Gleiten</item>
+        <item>Klicken</item>
+        <item>Beschleunigungssensor</item>
+    </string-array>
+</resources>
