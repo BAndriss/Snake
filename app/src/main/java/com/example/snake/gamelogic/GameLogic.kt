@@ -14,7 +14,7 @@ class GameLogic(
     var direction: Direction = Direction.UP
     private var point: Int = 0
     private var timer: Timer
-    private val startSnakeLength = 20
+    private val startSnakeLength = 4
     private val gameSpeed = 100.toLong()
 
     init {
